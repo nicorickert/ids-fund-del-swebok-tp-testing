@@ -29,6 +29,16 @@ pipeline {
       }
     }
 
+    stage('Analyze') {
+      steps {
+        echo 'Analyzing'
+        withGradle() {
+          sh 'Dsonar.host.url=localhost:9000'
+        }
+
+      }
+    }
+
     stage('Deploy') {
       steps {
         echo 'Deploying'
