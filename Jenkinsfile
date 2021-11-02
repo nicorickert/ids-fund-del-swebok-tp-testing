@@ -39,6 +39,16 @@ pipeline {
       }
     }
 
+    stage('Coverage') {
+      steps {
+        echo 'Generating coverage report'
+        withGradle() {
+          sh './gradlew -i test jacocoTestReport'
+        }
+
+      }
+    }
+
     stage('Deploy') {
       steps {
         echo 'Deploying'
